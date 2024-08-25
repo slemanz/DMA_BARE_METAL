@@ -2,6 +2,11 @@
 
 static uint16_t compute_uart_div(uint32_t PeriphClk, uint32_t BaudRate);
 
+static uint16_t compute_uart_div(uint32_t PeriphClk, uint32_t BaudRate)
+{
+    return ((PeriphClk + (BaudRate/2U))/BaudRate);
+}
+
 void uart2_init(void)
 {
     // configure uart module:
@@ -14,9 +19,13 @@ void uart2_init(void)
     // configure the transfer direction
     UART2->CR1 = CR1_TE;
 
+    // enable uart module
+    UART2->CR1 |= CR1_UE;
+
 }
 
-static uint16_t compute_uart_div(uint32_t PeriphClk, uint32_t BaudRate)
+void uart2_tx(uint8_t ch)
 {
-    return ((PeriphClk + (BaudRate/2U))/BaudRate);
+    while(!(UART2->SR & SR_TXE));
+    UART2->DR = ch;
 }

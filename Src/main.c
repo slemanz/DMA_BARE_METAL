@@ -45,6 +45,7 @@ void gpio_setup(void)
 int main(void)
  {
     gpio_setup();
+    uart2_init();
     system_setup();
 
     uint64_t start_time = system_get_ticks();
@@ -54,6 +55,7 @@ int main(void)
         if((system_get_ticks() - start_time) >= 500)
         {
             GPIO_ToggleOutputPin(LED_PORT, LED_PIN);
+            uart2_tx((uint8_t)0x58);
             start_time = system_get_ticks();
         }
 
