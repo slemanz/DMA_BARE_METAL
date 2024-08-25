@@ -420,5 +420,6 @@ typedef struct{
 #include "systick.h"
 #include "timer.h"
 #include "uart.h"
+#include "dma.h"
 
 #endif
