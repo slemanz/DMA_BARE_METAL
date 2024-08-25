@@ -10,5 +10,6 @@
 
 void uart2_init(void);
 void uart2_tx(uint8_t ch);
+void uart2_tx_string(uint8_t *ch, uint32_t Len);
 
 #endif

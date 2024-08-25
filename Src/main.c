@@ -48,6 +48,8 @@ int main(void)
     uart2_init();
     system_setup();
 
+    uint8_t string[] = "Hello World\n";
+
     uint64_t start_time = system_get_ticks();
 
     while (1)
@@ -55,7 +57,7 @@ int main(void)
         if((system_get_ticks() - start_time) >= 500)
         {
             GPIO_ToggleOutputPin(LED_PORT, LED_PIN);
-            uart2_tx((uint8_t)0x58);
+            uart2_tx_string(string, sizeof(string));
             start_time = system_get_ticks();
         }
 
