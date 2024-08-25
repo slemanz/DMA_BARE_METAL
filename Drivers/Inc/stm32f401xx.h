@@ -206,6 +206,15 @@ typedef struct
 	__vo uint32_t OR;          /*!< TIM option register,                 Address offset: 0x50 */
 }TIM_RegDef_t;
 
+typedef struct{
+  	__vo uint32_t SR;         /*!< USART Status register,                   Address offset: 0x00 */
+  	__vo uint32_t DR;         /*!< USART Data register,                     Address offset: 0x04 */
+  	__vo uint32_t BRR;        /*!< USART Baud rate register,                Address offset: 0x08 */
+  	__vo uint32_t CR1;        /*!< USART Control register 1,                Address offset: 0x0C */
+  	__vo uint32_t CR2;        /*!< USART Control register 2,                Address offset: 0x10 */
+  	__vo uint32_t CR3;        /*!< USART Control register 3,                Address offset: 0x14 */
+  	__vo uint32_t GTPR;       /*!< USART Guard time and prescaler register, Address offset: 0x18 */
+} UART_RegDef_t;
 
 /*
  * 	peripheral definitions (Peripheral base address typecasted to xxx_RegDef_t)
@@ -230,6 +239,10 @@ typedef struct
 #define TIM3			((TIM_RegDef_t*)TIM3_BASEADDR)
 #define TIM4			((TIM_RegDef_t*)TIM4_BASEADDR)
 #define TIM5			((TIM_RegDef_t*)TIM5_BASEADDR)
+
+#define UART1			((UART_RegDef_t*)USART1_BASEADDR)
+#define UART2			((UART_RegDef_t*)USART2_BASEADDR)
+#define UART6			((UART_RegDef_t*)USART6_BASEADDR)
 
 
 /*
@@ -266,9 +279,9 @@ typedef struct
  * Clock enable macros for USARTx peripherals
  */
 
-#define USART1_PCLK_EN()		(RCC->APB2ENR |= (1 << 4))
-#define USART2_PCLK_EN()		(RCC->APB1ENR |= (1 << 17))
-#define USART6_PCLK_EN()		(RCC->APB2ENR |= (1 << 5))
+#define UART1_PCLK_EN()		(RCC->APB2ENR |= (1 << 4))
+#define UART2_PCLK_EN()		(RCC->APB1ENR |= (1 << 17))
+#define UART6_PCLK_EN()		(RCC->APB2ENR |= (1 << 5))
 
 
 /*
@@ -321,9 +334,9 @@ typedef struct
  * Clock disable macros for USARTx peripherals
  */
 
-#define USART1_PCLK_DI()		(RCC->APB2ENR &= ~(1 << 4))
-#define USART2_PCLK_DI()		(RCC->APB1ENR &= ~(1 << 17))
-#define USART6_PCLK_DI()		(RCC->APB2ENR &= ~(1 << 5))
+#define UART1_PCLK_DI()		(RCC->APB2ENR &= ~(1 << 4))
+#define UART2_PCLK_DI()		(RCC->APB1ENR &= ~(1 << 17))
+#define UART6_PCLK_DI()		(RCC->APB2ENR &= ~(1 << 5))
 
 
 /*
@@ -406,5 +419,6 @@ typedef struct
 #include "gpio.h"
 #include "systick.h"
 #include "timer.h"
+#include "uart.h"
 
 #endif
