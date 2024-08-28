@@ -67,7 +67,26 @@
 #define GPIOH_BASEADDR						(AHB1PERIPH_BASE + 0x1C00U)
 
 #define RCC_BASEADDR						(AHB1PERIPH_BASE + 0x3800U)
+#define DMA1_BASEADDR           			(AHB1PERIPH_BASE + 0x6000)
+#define DMA2_BASEADDR             			(AHB1PERIPH_BASE + 0x6400)
 
+#define DMA1_Stream0_BASEADDR     			(DMA1_BASEADDR + 0x010)
+#define DMA1_Stream1_BASEADDR     			(DMA1_BASEADDR + 0x028)
+#define DMA1_Stream2_BASEADDR     			(DMA1_BASEADDR + 0x040)
+#define DMA1_Stream3_BASEADDR     			(DMA1_BASEADDR + 0x058)
+#define DMA1_Stream4_BASEADDR     			(DMA1_BASEADDR + 0x070)
+#define DMA1_Stream5_BASEADDR     			(DMA1_BASEADDR + 0x088)
+#define DMA1_Stream6_BASEADDR     			(DMA1_BASEADDR + 0x0A0)
+#define DMA1_Stream7_BASEADDR     			(DMA1_BASEADDR + 0x0B8)
+
+#define DMA2_Stream0_BASEADDR     			(DMA2_BASEADDR + 0x010)
+#define DMA2_Stream1_BASEADDR     			(DMA2_BASEADDR + 0x028)
+#define DMA2_Stream2_BASEADDR     			(DMA2_BASEADDR + 0x040)
+#define DMA2_Stream3_BASEADDR     			(DMA2_BASEADDR + 0x058)
+#define DMA2_Stream4_BASEADDR     			(DMA2_BASEADDR + 0x070)
+#define DMA2_Stream5_BASEADDR     			(DMA2_BASEADDR + 0x088)
+#define DMA2_Stream6_BASEADDR     			(DMA2_BASEADDR + 0x0A0)
+#define DMA2_Stream7_BASEADDR     			(DMA2_BASEADDR + 0x0B8)
 
 /*
  * Base addresses of peripherals which are hanging on APB1 bus
@@ -216,6 +235,24 @@ typedef struct{
   	__vo uint32_t GTPR;       /*!< USART Guard time and prescaler register, Address offset: 0x18 */
 } UART_RegDef_t;
 
+typedef struct{
+	__vo uint32_t LISR;   /*!< DMA low interrupt status register,      Address offset: 0x00 */
+	__vo uint32_t HISR;   /*!< DMA high interrupt status register,     Address offset: 0x04 */
+	__vo uint32_t LIFCR;  /*!< DMA low interrupt flag clear register,  Address offset: 0x08 */
+	__vo uint32_t HIFCR;  /*!< DMA high interrupt flag clear register, Address offset: 0x0C */
+} DMA_RegDef_t;
+
+typedef struct
+{
+  __vo uint32_t CR;     /*!< DMA stream x configuration register      */
+  __vo uint32_t NDTR;   /*!< DMA stream x number of data register     */
+  __vo uint32_t PAR;    /*!< DMA stream x peripheral address register */
+  __vo uint32_t M0AR;   /*!< DMA stream x memory 0 address register   */
+  __vo uint32_t M1AR;   /*!< DMA stream x memory 1 address register   */
+  __vo uint32_t FCR;    /*!< DMA stream x FIFO control register       */
+} DMA_Stream_RegDef_t;
+
+
 /*
  * 	peripheral definitions (Peripheral base address typecasted to xxx_RegDef_t)
  */
@@ -244,6 +281,26 @@ typedef struct{
 #define UART2			((UART_RegDef_t*)USART2_BASEADDR)
 #define UART6			((UART_RegDef_t*)USART6_BASEADDR)
 
+#define DMA1			((DMA_RegDef_t*)DMA1_BASEADDR)
+#define DMA2			((DMA_RegDef_t*)DMA2_BASEADDR)
+
+#define DMA1_Stream0	((DMA_RegDef_t*)DMA1_Stream0_BASEADDR)
+#define DMA1_Stream1	((DMA_RegDef_t*)DMA1_Stream1_BASEADDR)
+#define DMA1_Stream2	((DMA_RegDef_t*)DMA1_Stream2_BASEADDR)
+#define DMA1_Stream3	((DMA_RegDef_t*)DMA1_Stream3_BASEADDR)
+#define DMA1_Stream4	((DMA_RegDef_t*)DMA1_Stream4_BASEADDR)
+#define DMA1_Stream5	((DMA_RegDef_t*)DMA1_Stream5_BASEADDR)
+#define DMA1_Stream6	((DMA_RegDef_t*)DMA1_Stream6_BASEADDR)
+#define DMA1_Stream7	((DMA_RegDef_t*)DMA1_Stream7_BASEADDR)
+
+#define DMA2_Stream0	((DMA_RegDef_t*)DMA2_Stream0_BASEADDR)
+#define DMA2_Stream1	((DMA_RegDef_t*)DMA2_Stream1_BASEADDR)
+#define DMA2_Stream2	((DMA_RegDef_t*)DMA2_Stream2_BASEADDR)
+#define DMA2_Stream3	((DMA_RegDef_t*)DMA2_Stream3_BASEADDR)
+#define DMA2_Stream4	((DMA_RegDef_t*)DMA2_Stream4_BASEADDR)
+#define DMA2_Stream5	((DMA_RegDef_t*)DMA2_Stream5_BASEADDR)
+#define DMA2_Stream6	((DMA_RegDef_t*)DMA2_Stream6_BASEADDR)
+#define DMA2_Stream7	((DMA_RegDef_t*)DMA2_Stream7_BASEADDR)
 
 /*
  * Clock enable macros for GPIOx peripherals

@@ -3,7 +3,12 @@
 void dma1_stream6_init(uint32_t src, uint32_t dst, uint32_t len)
 {
     /* Enable clock access to DMA */
+    RCC->AHB1ENR = DMA1EN;
+
     /* Disable DMA1 stream6 */
+    
+
+
     /* Clear all interrupt flags of stream6 */
     /* Set the destination buffer */
     /* Set the source buffer */
