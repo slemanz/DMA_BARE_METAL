@@ -30,9 +30,25 @@ void dma1_stream6_init(uint32_t src, uint32_t dst, uint32_t len)
 
 
     /* Select Stream6 CH4 */
+    DMA1_Stream6->CR = CHSEL4;
+
+
     /* Enable memory increment */
+    DMA1_Stream6->CR |= DMA_MEM_INC;
+
+
     /* Configure transfer direction */
+    DMA1_Stream6->CR |= DMA_DIR_MEM_TO_PERIPH;
+
+
+    /* Enable DMA transfer complete interrupt */
+    DMA1_Stream6->CR |= DMA_CR_TCIE;
+
+
     /* Enable direct mode and disable FIFO */
+
+
+
     /* Enable DMA1 Stream6 */
     /* Enable UART2 transmitter DMA*/
     /* DMA interrupt enable NVIC */
