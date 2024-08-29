@@ -15,6 +15,12 @@
 #define DMA_CR_EN                   (1U << 0)
 
 
+#define DMA1_Stream6_IRQn           (17)
+
+
 void dma1_stream6_init(uint32_t src, uint32_t dst, uint32_t len);
+
+
+void NVIC_EnableIRQ(uint32_t IRQNumber);
 
 #endif

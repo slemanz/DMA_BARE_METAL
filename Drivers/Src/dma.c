@@ -59,5 +59,25 @@ void dma1_stream6_init(uint32_t src, uint32_t dst, uint32_t len)
 
 
     /* DMA interrupt enable NVIC */
-    // todo NVIC_EnableIRQ(DMA1_Stream6_IRQn);
+    NVIC_EnableIRQ(DMA1_Stream6_IRQn);
+}
+
+void NVIC_EnableIRQ(uint32_t IRQNumber)
+{
+    if(IRQNumber <= 31)
+    {
+        // program ISER0 register
+        *NVIC_ISER0 |= (1 << IRQNumber);
+
+    }else if(IRQNumber > 31 && IRQNumber < 64) // 32 to 63
+    {
+        // program ISER1 register
+        *NVIC_ISER1 |= (1 << (IRQNumber % 32));
+
+    }else if(IRQNumber >= 64 && IRQNumber < 96) // 64 to 95
+    {
+        // program ISER2 register
+        *NVIC_ISER2 |= (1 << (IRQNumber % 64));
+
+    }
 }
