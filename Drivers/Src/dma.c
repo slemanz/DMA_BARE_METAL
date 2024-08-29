@@ -46,10 +46,18 @@ void dma1_stream6_init(uint32_t src, uint32_t dst, uint32_t len)
 
 
     /* Enable direct mode and disable FIFO */
-
+    DMA1_Stream6->FCR = 0;
 
 
     /* Enable DMA1 Stream6 */
+    DMA1_Stream6->CR |= DMA_CR_EN;
+
+
+
     /* Enable UART2 transmitter DMA*/
+    UART2->CR3 |= UART_CR3_DMAT;
+
+
     /* DMA interrupt enable NVIC */
+    // todo NVIC_EnableIRQ(DMA1_Stream6_IRQn);
 }
