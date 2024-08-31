@@ -57,8 +57,7 @@ int main(void)
     {
         if((system_get_ticks() - start_time) >= 2000)
         {
-            dma1_stream6_init((uint32_t)string, (uint32_t)&UART2->DR, 31);
-            uart2_tx_string(string, sizeof(string));
+            dma1_stream6_init((uint32_t)string, (uint32_t)&UART2->DR, sizeof(string)); // not best practice, just to understand how dma works
             start_time = system_get_ticks();
         }
 
@@ -68,9 +67,10 @@ int main(void)
 
 static void dma_callback(void)
 {
-    GPIOA->ODR |= LED_PIN;
+    GPIOA->ODR |= (1 << 3);
 }
 
+// this part seems not to be working
 void DMA1_Stream6_IRQHandler(void)
 {
     /* Check for transfer complete interrupt */

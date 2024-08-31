@@ -10,8 +10,8 @@
 #define DMA_S_EN                    (1U << 0)
 #define CHSEL4                      (1U << 27)
 #define DMA_MEM_INC                 (1U << 10)
-#define DMA_DIR_MEM_TO_PERIPH       (1U << 16)
-#define DMA_CR_TCIE                 (1U << 14)
+#define DMA_DIR_MEM_TO_PERIPH       (1U << 6)
+#define DMA_CR_TCIE                 (1U << 4)
 #define DMA_CR_EN                   (1U << 0)
 
 

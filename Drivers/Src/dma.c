@@ -6,7 +6,10 @@ void dma1_stream6_init(uint32_t src, uint32_t dst, uint32_t len)
     RCC->AHB1ENR = DMA1EN;
 
     /* Disable DMA1 stream6 */
-    DMA1_Stream6->CR &= ~DMA_S_EN;
+    DMA1_Stream6->CR &= ~DMA_CR_EN;
+
+    /* Wait until dma1 stream 6 is disable */
+    while(DMA1_Stream6->CR & DMA_CR_EN);
 
 
     /* Clear all interrupt flags of stream6 */
