@@ -40,27 +40,46 @@ void gpio_setup(void)
     GPIO_Init(&UartTx);
 }
 
-
+static void dma_callback();
 
 int main(void)
  {
     gpio_setup();
-    uart2_init();
+    uart2_init(); // tx init
     system_setup();
 
-    uint8_t string[] = "Hello World\n";
+
+    uint8_t string[] = "Hello World from dma!\n";
 
     uint64_t start_time = system_get_ticks();
 
     while (1)
     {
-        if((system_get_ticks() - start_time) >= 500)
+        if((system_get_ticks() - start_time) >= 2000)
         {
-            GPIO_ToggleOutputPin(LED_PORT, LED_PIN);
+            dma1_stream6_init((uint32_t)string, (uint32_t)&UART2->DR, 31);
             uart2_tx_string(string, sizeof(string));
             start_time = system_get_ticks();
         }
 
         // Do useful work
+    }
+}
+
+static void dma_callback(void)
+{
+    GPIOA->ODR |= LED_PIN;
+}
+
+void DMA1_Stream6_IRQHandler(void)
+{
+    /* Check for transfer complete interrupt */
+    if(DMA1->HISR & HISR_TCIF6) 
+    {
+        /* Clear flag*/
+        DMA1->HIFCR |= HIFCR_CTCIF6;
+
+        /* Do something */
+        dma_callback();
     }
 }

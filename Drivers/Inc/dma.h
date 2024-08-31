@@ -17,6 +17,9 @@
 
 #define DMA1_Stream6_IRQn           (17)
 
+#define HISR_TCIF6                  (1U << 21)
+#define HIFCR_CTCIF6                (1U << 21)
+
 
 void dma1_stream6_init(uint32_t src, uint32_t dst, uint32_t len);
 
